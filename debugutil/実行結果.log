@@ -1,0 +1,18 @@
+ $ rm a.out; g++ -rdynamic -lpthread *.h *.cpp; rm *.gch
+ $ ./a.out
+
+ENTER main.cpp main() Line:28
+ENTER main.cpp trace_test() Line:5
+EXIT  main.cpp trace_test() Line:5
+ENTER main.cpp hoge() Line:22
+ENTER main.cpp foo() Line:16
+ENTER main.cpp bar() Line:10
+Handle Assert: assert(false && "TEST ASSERT") main.cpp bar() line:11
+./a.out(_ZN10CDebugUtil8printLogEPKcS1_iS1_+0x92)[0x401346]
+./a.out(_ZN10CDebugUtil12handleAssertEPKcS1_iS1_+0x2e)[0x4012ac]
+./a.out(_Z3barv+0x3d)[0x40168e]
+./a.out(_Z3foov+0x29)[0x4016e6]
+./a.out(_Z4hogev+0x29)[0x40173e]
+./a.out(main+0x2e)[0x40179b]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x7f17b20e9c05]
+./a.out[0x4011b9]

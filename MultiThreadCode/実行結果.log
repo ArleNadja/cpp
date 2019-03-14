@@ -1,0 +1,52 @@
+﻿ $ rm a.out; g++ -lpthread *.h *.cpp; rm *.gch
+ $ ./a.out
+
+Before waitForAllCommandsExecuted() call.
+---- ENTER CCommand::execute() ----
+1st
+1st
+1st
+1st
+1st
+---- EXIT  CCommand::execute() ----
+---- ENTER CCommand::execute() ----
+2nd
+2nd
+2nd
+---- EXIT  CCommand::execute() ----
+---- ENTER CCommand::execute() ----
+3rd
+3rd
+3rd
+3rd
+3rd
+3rd
+3rd
+---- EXIT  CCommand::execute() ----
+After  waitForAllCommandsExecuted() call.
+Main thread
+---- ENTER CCommand::execute() ----
+4th
+Main thread
+4th
+Main thread
+---- EXIT  CCommand::execute() ----
+---- ENTER CCommand::execute() ----
+5th
+Main thread
+5th
+Main thread
+5th
+Main thread
+5th
+Main thread
+5th
+Main thread
+---- EXIT  CCommand::execute() ----
+---- ENTER CCommand::execute() ----
+6th
+Main thread
+6th
+Main thread
+6th
+---- EXIT  CCommand::execute() ----
