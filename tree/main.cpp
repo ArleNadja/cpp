@@ -1,3 +1,19 @@
+﻿/**
+ * Tree構造のNodeのサンプル。
+ * 実行結果は以下。
+
+ $ a.out
+ 4
+    3
+       6
+ 2
+    7
+    5
+ 0
+    1
+    8
+ */
+
 #include <iostream>
 #include "CNode.h"
 
