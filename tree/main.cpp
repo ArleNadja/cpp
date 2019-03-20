@@ -95,4 +95,6 @@ int main()
     for (::std::vector<CNode *>::iterator i = roots.begin(); i != roots.end(); i++) {
         delete *i;
     }
+    
+    return 0;
 }
