@@ -1,8 +1,6 @@
 #include <iostream>
 #include "CNode.h"
 
-
-
 CNode::CNode(
     const char *id)
 : fID(id)
