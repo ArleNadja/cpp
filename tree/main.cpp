@@ -1,17 +1,18 @@
-﻿/**
+/**
  * Tree構造のNodeのサンプル。
  * 実行結果は以下。
 
- $ a.out
- 4
-    3
-       6
- 2
-    7
-    5
- 0
-    1
-    8
+ $ ./a.out 
+ root
+   4
+      3
+         6
+   2
+      7
+      5
+   0
+      1
+      8
  */
 
 #include <iostream>
@@ -57,19 +58,6 @@ void printRec(
     }
 }
 
-void printChildren(
-    const ::std::string &id,
-    const ::std::vector<CNode *> &nodes)
-{
-    for (::std::vector<CNode *>::const_iterator i = nodes.begin(); i != nodes.end(); i++) {
-        CNode *node = *i;
-        if (node->getID() == id) {
-            printRec("", node);
-            return;
-        }
-    }
-}
-
 int main()
 {
     CNode *root = new CNode("root");
@@ -81,12 +69,11 @@ int main()
         }
     }
 
-    printChildren("4", root->getChildren());
-    printChildren("2", root->getChildren());
-    printChildren("0", root->getChildren());
+    printRec("", root);
 
     delete root;
 
     return 0;
 }
+
 
