@@ -6,10 +6,6 @@
 
 class CNode {
 public:
-    static CNode *getNode(
-        const ::std::string &id,
-        const ::std::vector<CNode *> &nodes);
-
     CNode(
         const char *id);
 
@@ -17,7 +13,7 @@ public:
 
     ::std::string getID();
 
-    CNode *addChild(
+    CNode *createChildIfNotExist(
         const char *childID);
 
     const ::std::vector<CNode *> &getChildren();

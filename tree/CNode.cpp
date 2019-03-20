@@ -1,17 +1,7 @@
+#include <iostream>
 #include "CNode.h"
 
-CNode *CNode::getNode(
-    const ::std::string &id,
-    const ::std::vector<CNode *> &nodes)
-{
-    for (::std::vector<CNode *>::const_iterator i = nodes.begin(); i != nodes.end(); i++) {
-        CNode *node = *i;
-        if (node->getID() == id) {
-            return node;
-        }
-    }
-    return 0;
-}
+
 
 CNode::CNode(
     const char *id)
@@ -33,9 +23,15 @@ CNode::~CNode()
     return fID;
 }
 
-CNode *CNode::addChild(
+CNode *CNode::createChildIfNotExist(
     const char *childID)
 {
+    for (::std::vector<CNode *>::const_iterator i = fChildren.begin(); i != fChildren.end(); i++) {
+        CNode *child = *i;
+        if (child->getID() == childID) {
+            return child;
+        }
+    }
     CNode *child = new CNode(childID);
     fChildren.push_back(child);
     return child;
