@@ -64,8 +64,8 @@ int main()
     for (int i = 0; i < kNumOfIDs; i++) {
         ::std::vector< ::std::string > ids = split(kIDs[i]);
         CNode *cur = root;
-        for (::std::vector< ::std::string >::const_iterator i = ids.begin(); i != ids.end(); i++) {
-            cur = cur->createChildIfNotExist(i->c_str());
+        for (::std::vector< ::std::string >::const_iterator itr = ids.begin(); itr != ids.end(); itr++) {
+            cur = cur->createChildIfNotExist(itr->c_str());
         }
     }
 
