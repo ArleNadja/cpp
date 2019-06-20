@@ -83,6 +83,9 @@ private:
         ::std::list<ICommand *> fCommands;
         CSynchronizer *fSync;
     };
+    
+    static CThread *createStartedThread(
+        IRunnable *runnable);
 
     bool hasErrorOccurred();
 
@@ -91,7 +94,6 @@ private:
     CSynchronizer *fQueueSync;
     CQueue *fQueue;
     CThread *fThread;
-
 };
 
 #endif /* _C_COMMAND_DISPATCHER_H */

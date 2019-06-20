@@ -24,16 +24,8 @@ CCommandDispatcher::CCommandDispatcher()
 
     fQueue = new CQueue(fQueueSync);
 
-    fThread = CThread::createInstance(this);
+    fThread = createStartedThread(this);
     if (fThread == 0) {
-        ::std::cout << 
-            "Failed CThread::createInstance()" << ::std::endl;
-        assert(false);
-        return;
-    }
-    if (! fThread->start()) {
-        ::std::cout << "Failed CThread::start()" << ::std::endl;
-        assert(false);
         return;
     }
 
@@ -42,10 +34,8 @@ CCommandDispatcher::CCommandDispatcher()
 
 CCommandDispatcher::~CCommandDispatcher()
 {
-    if (fQueue != 0) {
-        fQueue->pushBack(new CTerminateCommand(fHasTerminated));
-    }
     if (fThread != 0) {
+        fQueue->pushBack(new CTerminateCommand(fHasTerminated)); // If fThread is not NULL, fQueue is also not NULL. (fQueue is required to process the run().)
         fThread->join();
     }
     delete fThread;
@@ -86,6 +76,25 @@ void CCommandDispatcher::run()
 }
 
 // private member method.
+CThread *CCommandDispatcher::createStartedThread(
+    IRunnable *runnable)
+{
+    CThread *thread = CThread::createInstance(runnable);
+    if (thread == 0) {
+        ::std::cout << 
+            "Failed CThread::createInstance()" << ::std::endl;
+        assert(false);
+        return 0;
+    }
+    if (! thread->start()) {
+        ::std::cout << "Failed CThread::start()" << ::std::endl;
+        assert(false);
+        delete thread;
+        return 0;
+    }
+    return thread;
+}
+
 bool CCommandDispatcher::hasErrorOccurred()
 {
     return fError;
