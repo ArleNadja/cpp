@@ -42,9 +42,12 @@ CCommandDispatcher::CCommandDispatcher()
 
 CCommandDispatcher::~CCommandDispatcher()
 {
-    fQueue->pushBack(new CTerminateCommand(fHasTerminated));
-    fThread->join();
-
+    if (fQueue != 0) {
+        fQueue->pushBack(new CTerminateCommand(fHasTerminated));
+    }
+    if (fThread != 0) {
+        fThread->join();
+    }
     delete fThread;
     delete fQueue;
     delete fQueueSync;
